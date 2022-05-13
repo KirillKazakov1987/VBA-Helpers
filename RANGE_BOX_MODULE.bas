@@ -1,3 +1,4 @@
+Attribute VB_Name = "RANGE_BOX_MODULE"
 Option Explicit
 
 Private Const ERR_INTERNAL_CODE = 999999

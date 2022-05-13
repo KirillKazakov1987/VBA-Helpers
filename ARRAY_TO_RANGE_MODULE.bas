@@ -30,11 +30,11 @@ Private Function Get_array_rank(arr As Variant) As Long
         Get_array_rank = 0
     Else
         Dim i As Long: i = 0
-        Dim n As Long
+        Dim N As Long
         On Error Resume Next
             Do While (Err = 0)
                 i = i + 1
-                n = UBound(arr, i)
+                N = UBound(arr, i)
             Loop
         On Error GoTo 0
         Get_array_rank = i - 1
