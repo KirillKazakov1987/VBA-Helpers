@@ -23,8 +23,8 @@ Public Property Get Name()
 End Property
 
 
-Public Property Get Count_rows()
-    Count_rows = lo.ListRows.count
+Public Property Get count_rows()
+    count_rows = lo.ListRows.Count
 End Property
 
 
