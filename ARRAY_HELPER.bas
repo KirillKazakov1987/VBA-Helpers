@@ -3,6 +3,27 @@ Attribute VB_Name = "ARRAY_HELPER"
 Option Explicit
 Option Base 0
 
+Public Function Repeat( _
+    v As Variant, _
+    first_inclusive_index As Long, _
+    last_inclusive_index As Long) As Variant
+    
+    Dim n As Long
+    n = last_inclusive_index - first_inclusive_index + 1
+    Debug.Assert n > 0
+    
+    Dim result As Variant
+    ReDim result(first_inclusive_index To last_inclusive_index)
+    
+    Dim i As Long
+    For i = first_inclusive_index To last_inclusive_index
+        result(i) = v
+    Next i
+    
+    Repeat = v
+End Function
+
+
 
 Public Function Provide_array(ParamArray arrays() As Variant) As Variant
     Dim n1 As Long: n1 = LBound(arrays)
@@ -19,8 +40,8 @@ End Function
 Public Function Provide_array_f64(ParamArray values() As Variant) As Double()
     Dim ib As Long: ib = LBound(values)
     Dim ie As Long: ie = UBound(values)
-    Dim N As Long: N = ie - ib + 1
-    Dim result() As Double: ReDim result(0 To N - 1)
+    Dim n As Long: n = ie - ib + 1
+    Dim result() As Double: ReDim result(0 To n - 1)
     
     Dim i As Long: For i = ib To ie
         result(0 + i - ib) = values(i)
@@ -198,11 +219,11 @@ Public Function Get_array_rank(arr As Variant) As Long
         Get_array_rank = 0
     Else
         Dim i As Long: i = 0
-        Dim N As Long
+        Dim n As Long
         On Error Resume Next
             Do While (Err = 0)
                 i = i + 1
-                N = UBound(arr, i)
+                n = UBound(arr, i)
             Loop
         On Error GoTo 0
         Get_array_rank = i - 1
@@ -348,7 +369,7 @@ Public Function Get_first_element_of_any_array(subj As Variant) As Variant
     Debug.Assert rank > 0
     Debug.Assert rank < 8
     
-    Dim i As Long, j As Long, k As Long, l As Long, m As Long, N As Long, o As Long
+    Dim i As Long, j As Long, k As Long, l As Long, m As Long, n As Long, o As Long
     If rank = 1 Then
         i = LBound(subj, 1)
         Get_first_element_of_any_array = subj(i)
@@ -380,17 +401,17 @@ Public Function Get_first_element_of_any_array(subj As Variant) As Variant
         k = LBound(subj, 3)
         l = LBound(subj, 4)
         m = LBound(subj, 5)
-        N = LBound(subj, 6)
-        Get_first_element_of_any_array = subj(i, j, k, l, m, N)
+        n = LBound(subj, 6)
+        Get_first_element_of_any_array = subj(i, j, k, l, m, n)
     ElseIf rank = 7 Then
         i = LBound(subj, 1)
         j = LBound(subj, 2)
         k = LBound(subj, 3)
         l = LBound(subj, 4)
         m = LBound(subj, 5)
-        N = LBound(subj, 6)
+        n = LBound(subj, 6)
         o = LBound(subj, 7)
-        Get_first_element_of_any_array = subj(i, j, k, l, m, N, o)
+        Get_first_element_of_any_array = subj(i, j, k, l, m, n, o)
     End If
     
 End Function
@@ -483,12 +504,12 @@ Public Function Change_lbound_of_array1D_f64( _
     'Dim li As Long: li = LBound(source_array)
     'Dim ui As Long: ui = UBound(source_array)
     
-    Dim N As Long: N = ARRAY_HELPER.Get_array_size(source_array, 1) 'N = ui - li + 1
+    Dim n As Long: n = ARRAY_HELPER.Get_array_size(source_array, 1) 'N = ui - li + 1
     
-    Dim dst_arr() As Double: ReDim dst_arr(new_lbound To new_lbound + N - 1)
+    Dim dst_arr() As Double: ReDim dst_arr(new_lbound To new_lbound + n - 1)
     
     Dim i As Long
-    For i = new_lbound To new_lbound + N - 1
+    For i = new_lbound To new_lbound + n - 1
         dst_arr(i) = ARRAY_HELPER.Get_item_of_array1D(source_array, i - new_lbound)
     Next i
     
@@ -610,14 +631,14 @@ End Function
 
 
 
-'' [ФУНКЦИЯ] Получить массив различающихся значений
-'' Возвращает массив, содержащий каждый уникальный элемент исходного массива по одному разу
-'' V - входной одномерный массив, в котором ищем уникальные элементы
+'' [OOIEOE?] Iieo?eou iannea ?acee?a?ueony cia?aiee
+'' Aica?auaao iannea, niaa??auee ea?aue oieeaeuiue yeaiaio enoiaiiai ianneaa ii iaiiio ?aco
+'' V - aoiaiie iaiiia?iue iannea, a eioi?ii euai oieeaeuiua yeaiaiou
 'Function Distinct_array1D(v As Variant) As Variant
 '    Dim i As Long, j As Long, k As Long, N As Long, count As Long
 '    Dim MyArray() As Variant
 '    ReDim MyArray(1 To 1)
-'    Dim Совпадение As Boolean
+'    Dim Niaiaaaiea As Boolean
 '
 '    If Not IsArray(v) Then
 '        MyArray(1) = v
@@ -632,16 +653,16 @@ End Function
 '    count = 1
 '    For i = 2 To N
 '
-'        Совпадение = False
+'        Niaiaaaiea = False
 '
 '        For j = 1 To UBound(MyArray())
 '            If v(i) = MyArray(j) Then
-'                Совпадение = True
+'                Niaiaaaiea = True
 '                Exit For
 '            End If
 '        Next j
 '
-'        If Совпадение = False Then
+'        If Niaiaaaiea = False Then
 '            count = count + 1
 '            ReDim Preserve MyArray(1 To count)
 '            MyArray(count) = v(i)
@@ -651,3 +672,5 @@ End Function
 '
 '    Distinct_array1D = MyArray()
 'End Function
+
+

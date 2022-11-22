@@ -18,13 +18,36 @@ Public Sub Init(list_object As ListObject)
 End Sub
 
 
+Public Sub Init_by_name_only(book As Workbook, list_object_name As String)
+    Dim sh As Worksheet
+    Dim llo As ListObject
+    
+    Dim list_object_name_lc As String
+    list_object_name_lc = LCase(list_object_name)
+    
+    For Each sh In book.Worksheets
+        For Each llo In sh.ListObjects
+            If LCase(llo.Name) = list_object_name_lc Then
+                Init llo
+                Exit Sub
+            End If
+        Next llo
+    Next sh
+    
+    Err.Raise 999999, , "Provided name of list object " + list_object_name + " is not found in the book " + book.Name + "!"
+End Sub
+
+
+
+
+
 Public Property Get Name()
     Name = lo.Name
 End Property
 
 
 Public Property Get count_rows()
-    count_rows = lo.ListRows.count
+    count_rows = lo.ListRows.Count
 End Property
 
 
@@ -85,7 +108,7 @@ End Property
 
 
 Public Property Get Is_cell_empty(column_name As String, row_ondex As Long) As Boolean
-    Is_cell_empty = IsEmpty(lo.ListColumns(column_name).Range(row_ondex + 1, 1).Value)
+    Is_cell_empty = IsEmpty(lo.ListColumns(column_name).Range(row_ondex + 1, 1).value)
 End Property
 
 
@@ -135,8 +158,8 @@ Private Function Get_columns_as_array2D_internal( _
     
     Debug.Assert ARRAY_HELPER.Get_array_rank(column_names) = 1
     
-    Dim N As Long: N = ARRAY_HELPER.Get_array_size(column_names)
-    Debug.Assert N > 0
+    Dim n As Long: n = ARRAY_HELPER.Get_array_size(column_names)
+    Debug.Assert n > 0
     
     Dim coll As New Collection
     
@@ -183,7 +206,7 @@ Public Property Get Free_row_index()
     If lo.DataBodyRange Is Nothing Then
         Free_row_index = 0
     Else
-        Free_row_index = lo.DataBodyRange.Rows.count - 1
+        Free_row_index = lo.DataBodyRange.Rows.Count - 1
     End If
 End Property
 
