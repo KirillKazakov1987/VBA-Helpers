@@ -36,10 +36,10 @@ End Function
 
 
 Public Sub Append(text As String)
-    Dim N As Long: N = Len(text)
+    Dim n As Long: n = Len(text)
     
-    If N > 0 Then
-        Count_chars = Count_chars + N
+    If n > 0 Then
+        Count_chars = Count_chars + n
         Count_chunks = Count_chunks + 1
         
         Dim i As Long: i = Get_free_chunk_index()

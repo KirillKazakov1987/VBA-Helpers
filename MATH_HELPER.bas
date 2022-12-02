@@ -17,10 +17,10 @@ Private Sub Test()
     Dim aXT() As Double
     aXT = ARRAY_HELPER.Provide_array_f64(-10, -1, 0, 1, 25, 49, 50, 51, 52, 75, 100, 101, 1000, 10000)
     
-    Dim N As Long: N = UBound(aXT) - LBound(aXT) + 1
-    Dim aYT() As Double: ReDim aYT(0 To N - 1)
+    Dim n As Long: n = UBound(aXT) - LBound(aXT) + 1
+    Dim aYT() As Double: ReDim aYT(0 To n - 1)
     
-    Dim i As Long: For i = 0 To N - 1
+    Dim i As Long: For i = 0 To n - 1
         Dim x As Double: x = aXT(i)
         Dim y As Double: y = curve.Calculate_y(x)
         aYT(i) = y

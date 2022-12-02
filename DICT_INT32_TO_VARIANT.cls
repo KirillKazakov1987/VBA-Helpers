@@ -56,16 +56,16 @@ End Function
 
 
 Public Function Try_get_value(key As Long) As Optional_variant
-    Dim optional_record_index As Optional_long
+    Dim optional_record_index As Optional_int32
     optional_record_index = dict_base.Try_get_record_index(key)
     
     If optional_record_index.Has_value Then
         Try_get_value.Has_value = True
 
-        If IsObject(values(optional_record_index.value)) Then
-            Set Try_get_value.value = values(optional_record_index.value)
+        If IsObject(values(optional_record_index.Value)) Then
+            Set Try_get_value.Value = values(optional_record_index.Value)
         Else
-            Try_get_value.value = values(optional_record_index.value)
+            Try_get_value.Value = values(optional_record_index.Value)
         End If
     Else
         Try_get_value.Has_value = False
@@ -79,10 +79,10 @@ Public Function Get_value(key As Long) As Variant
     OPTIONAL_VALUE = Me.Try_get_value(key)
     
     If OPTIONAL_VALUE.Has_value Then
-        If IsObject(OPTIONAL_VALUE.value) Then
-            Set Get_value = OPTIONAL_VALUE.value
+        If IsObject(OPTIONAL_VALUE.Value) Then
+            Set Get_value = OPTIONAL_VALUE.Value
         Else
-            Get_value = OPTIONAL_VALUE.value
+            Get_value = OPTIONAL_VALUE.Value
         End If
     Else
         Err.Raise 999999

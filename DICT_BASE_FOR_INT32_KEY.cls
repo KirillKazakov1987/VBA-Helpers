@@ -123,7 +123,7 @@ End Function
 
 Public Function Add_key_and_get_record_index(key As Long) As Long
 
-    Dim optional_record_index As Optional_long
+    Dim optional_record_index As Optional_int32
     
     optional_record_index = Try_get_record_index(key)
     
@@ -204,7 +204,7 @@ End Function
 
 
 
-Public Function Try_get_record_index(key As Long) As Optional_long
+Public Function Try_get_record_index(key As Long) As Optional_int32
    
     Dim key_hash_code As Long
     key_hash_code = Get_hash_code(key)

@@ -11,7 +11,7 @@ Option Explicit
 Option Base 0
 
 
-Private N As Long
+Private n As Long
 Private aX() As Double
 Private aY() As Double
 
@@ -23,7 +23,7 @@ Public Sub Init(x_values() As Double, y_values() As Double)
     Debug.Assert UBound(aX) = UBound(aY)
     Debug.Assert Is_sorted_f64(aX)
     
-    N = UBound(aX)
+    n = UBound(aX)
 End Sub
 
 
@@ -33,7 +33,7 @@ Public Property Get First_x()
 End Property
 
 Public Property Get Last_x()
-    Last_x = aX(N - 1)
+    Last_x = aX(n - 1)
 End Property
 
 
@@ -56,23 +56,23 @@ End Function
 
 
 Public Function Calculate_y(x As Double) As Double
-    Dim M1, M2, M3 As Long
-    M1 = 0
-    M3 = N
+    Dim m1, m2, M3 As Long
+    m1 = 0
+    M3 = n
 
     Dim y As Double
 
-    Do While ((M3 - M1) > 1)
-        M2 = (M3 + M1) \ 2
-        If x > aX(M2) Then M1 = M2 Else M3 = M2
+    Do While ((M3 - m1) > 1)
+        m2 = (M3 + m1) \ 2
+        If x > aX(m2) Then m1 = m2 Else M3 = m2
     Loop
 
-    If x < aX(M1) Then
-        y = aY(M1)
+    If x < aX(m1) Then
+        y = aY(m1)
     ElseIf x > aX(M3) Then
         y = aY(M3)
     Else
-        y = aY(M1) + (aY(M3) - aY(M1)) / (aX(M3) - aX(M1)) * (x - aX(M1))
+        y = aY(m1) + (aY(M3) - aY(m1)) / (aX(M3) - aX(m1)) * (x - aX(m1))
     End If
 
     Calculate_y = y

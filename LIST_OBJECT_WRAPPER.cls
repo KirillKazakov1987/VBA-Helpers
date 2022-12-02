@@ -18,6 +18,12 @@ Public Sub Init(list_object As ListObject)
 End Sub
 
 
+Public Property Get Data_body_range()
+    Set Data_body_range = lo.DataBodyRange
+End Property
+
+
+
 Public Sub Init_by_name_only(book As Workbook, list_object_name As String)
     Dim sh As Worksheet
     Dim llo As ListObject
@@ -108,7 +114,7 @@ End Property
 
 
 Public Property Get Is_cell_empty(column_name As String, row_ondex As Long) As Boolean
-    Is_cell_empty = IsEmpty(lo.ListColumns(column_name).Range(row_ondex + 1, 1).value)
+    Is_cell_empty = IsEmpty(lo.ListColumns(column_name).Range(row_ondex + 1, 1).Value)
 End Property
 
 
@@ -128,6 +134,135 @@ Public Function Get_column_as_array1D(column_name As String) As Variant
     
     Get_column_as_array1D = result
 End Function
+
+
+
+
+Public Function Get_interior_colors_of_column_cells_as_array1D_of_int32( _
+    column_name As String, _
+    Optional first_index As Long = 0) As Long()
+    
+    Debug.Assert Not lo.DataBodyRange Is Nothing
+    Debug.Assert Not IsEmpty(column_name)
+    Debug.Assert Not column_name = ""
+
+    Dim locol As ListColumn
+    Set locol = lo.ListColumns.Item(column_name)
+    
+    Dim result() As Long
+    result = EXCEL_RANGE_TO_ARRAY.Get_interior_colors_of_range_cells_as_array1D_of_int32( _
+        lo.DataBodyRange, _
+        True, _
+        first_index)
+
+    Get_interior_colors_of_column_cells_as_array1D_of_int32 = result
+End Function
+
+
+
+Public Function Get_column_as_array1D_of_int32( _
+    column_name As String, _
+    Optional first_index As Long = 0, _
+    Optional substitute_for_empty As Long = 0, _
+    Optional substitute_for_uncovertable As Long = 0, _
+    Optional ByRef counted_empty_values As Long, _
+    Optional ByRef counted_unconvertable_values As Long) As Long()
+    
+    
+    Debug.Assert Not lo.DataBodyRange Is Nothing
+    
+    Dim locol As ListColumn
+    Set locol = lo.ListColumns.Item(column_name)
+    
+    Dim result() As Long
+    result = EXCEL_RANGE_TO_ARRAY.Read_array1D_of_int32_from_range( _
+        lo.DataBodyRange, _
+        True, _
+        first_index, _
+        substitute_for_empty, substitute_for_uncovertable, _
+        counted_empty_values, counted_unconvertable_values)
+
+    Get_column_as_array1D_of_int32 = result
+End Function
+
+
+Public Function Get_column_as_array1D_of_float64( _
+    column_name As String, _
+    Optional first_index As Long = 0, _
+    Optional substitute_for_empty As Double = 0, _
+    Optional substitute_for_uncovertable As Double = 0, _
+    Optional ByRef counted_empty_values As Long, _
+    Optional ByRef counted_unconvertable_values As Long) As Double()
+    
+    
+    Debug.Assert Not lo.DataBodyRange Is Nothing
+    
+    Dim locol As ListColumn
+    Set locol = lo.ListColumns.Item(column_name)
+    
+    Dim result() As Double
+    result = EXCEL_RANGE_TO_ARRAY.Read_array1D_of_float64_from_range( _
+        lo.DataBodyRange, _
+        True, _
+        first_index, _
+        substitute_for_empty, substitute_for_uncovertable, _
+        counted_empty_values, counted_unconvertable_values)
+
+    Get_column_as_array1D_of_float64 = result
+End Function
+
+
+
+Public Function Get_column_as_array1D_of_bool( _
+    column_name As String, _
+    Optional first_index As Long = 0, _
+    Optional substitute_for_empty As Boolean = 0, _
+    Optional substitute_for_uncovertable As Boolean = 0, _
+    Optional ByRef counted_empty_values As Long, _
+    Optional ByRef counted_unconvertable_values As Long) As Boolean()
+    
+    
+    Debug.Assert Not lo.DataBodyRange Is Nothing
+    
+    Dim locol As ListColumn
+    Set locol = lo.ListColumns.Item(column_name)
+    
+    Dim result() As Boolean
+    result = EXCEL_RANGE_TO_ARRAY.Read_array1D_of_bool_from_range( _
+        lo.DataBodyRange, _
+        True, _
+        first_index, _
+        substitute_for_empty, substitute_for_uncovertable, _
+        counted_empty_values, counted_unconvertable_values)
+
+    Get_column_as_array1D_of_bool = result
+End Function
+
+
+
+Public Function Get_column_as_array1D_of_string( _
+    column_name As String, _
+    Optional first_index As Long = 0, _
+    Optional substitute_for_empty As String = "", _
+    Optional ByRef counted_empty_values As Long) As String()
+    
+    
+    Debug.Assert Not lo.DataBodyRange Is Nothing
+    
+    Dim locol As ListColumn
+    Set locol = lo.ListColumns.Item(column_name)
+    
+    Dim result() As String
+    result = EXCEL_RANGE_TO_ARRAY.Read_array1D_of_string_from_range( _
+        lo.DataBodyRange, _
+        True, _
+        first_index, _
+        substitute_for_empty, _
+        counted_empty_values)
+
+    Get_column_as_array1D_of_string = result
+End Function
+
 
 
 Public Function Get_columns_as_array2D( _
@@ -229,5 +364,7 @@ Public Sub Append_2D_array( _
     
     ARRAY_TO_EXCEL_RANGE.Write_2D_array_to_excel_range array2D, dst_upper_left_cell
 End Sub
+
+
 
 

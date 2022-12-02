@@ -34,7 +34,7 @@ Sub Create_worksheet_with_style_information()
         ws.Name = wsname
     End If
 
-    Dim Nst As Long: Nst = ThisWorkbook.Styles.count
+    Dim Nst As Long: Nst = ThisWorkbook.Styles.Count
     Dim aStData() As Variant: ReDim aStData(1 To Nst + 1, 1 To 30)
     Dim j As Long: j = 0
 
@@ -132,7 +132,7 @@ Sub Create_worksheet_with_style_information()
     
     
     ' Create table for style deletion
-    dst_rng_address = Get_range_address(3, dst_rng.Column + lo.ListColumns.count + 2)
+    dst_rng_address = Get_range_address(3, dst_rng.Column + lo.ListColumns.Count + 2)
     Set dst_rng = ws.Range(dst_rng_address)
     
     dst_rng.Offset(-1, 0).Value = "Style deleting instructions"
@@ -273,7 +273,7 @@ Public Sub Replace_styles_from_list_object_instructions()
     Dim lo As ListObject
     Set lo = ActiveSheet.ListObjects(loname_style_replacement)
     
-    Dim nr As Long: nr = lo.DataBodyRange.Rows.count
+    Dim nr As Long: nr = lo.DataBodyRange.Rows.Count
 
     Dim worksheet_names() As String: ReDim worksheet_names(1 To nr)
     Dim style_old_names() As String: ReDim style_old_names(1 To nr)
@@ -335,12 +335,12 @@ END_OF_LOOP_ITERATION:
     Next i
     
     Dim k As Variant
-    For Each k In dict.Keys
+    For Each k In dict.keys
         Set col = dict(k)
         
-        Dim pairs() As Style_replacement_pair: ReDim pairs(1 To col.count)
+        Dim pairs() As Style_replacement_pair: ReDim pairs(1 To col.Count)
         
-        For i = 1 To col.count
+        For i = 1 To col.Count
             Dim onv As String: onv = col(i)
             Dim arr_str() As String: arr_str = Split(onv, "@")
 
@@ -368,17 +368,17 @@ Private Sub Replace_styles( _
     subj As Range, _
     Optional too_much_cells_value As Long = 10000000)
 
-    Dim N As Long: N = UBound(pairs) - LBound(pairs) + 1
-    Dim old_styles() As Style: ReDim old_styles(1 To N)
-    Dim new_styles() As Style: ReDim new_styles(1 To N)
-    Dim filters() As Boolean: ReDim filters(1 To N)
+    Dim n As Long: n = UBound(pairs) - LBound(pairs) + 1
+    Dim old_styles() As Style: ReDim old_styles(1 To n)
+    Dim new_styles() As Style: ReDim new_styles(1 To n)
+    Dim filters() As Boolean: ReDim filters(1 To n)
     
     Dim ws As Worksheet: Set ws = subj.Worksheet
     Dim wb As Workbook: Set wb = ws.Parent
     Dim all_styles As Styles: Set all_styles = wb.Styles
     
     Dim i As Long
-    For i = 1 To N
+    For i = 1 To n
         Dim pair As Style_replacement_pair: pair = pairs(i - 1 + LBound(pairs))
     
         On Error Resume Next
@@ -403,7 +403,7 @@ Private Sub Replace_styles( _
 
     Dim cell As Range
     For Each cell In subj
-        For i = 1 To N
+        For i = 1 To n
             If cell.Style = old_styles(i) Then cell.Style = new_styles(i)
         Next i
     Next cell

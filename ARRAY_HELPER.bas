@@ -1,5 +1,4 @@
 Attribute VB_Name = "ARRAY_HELPER"
-
 Option Explicit
 Option Base 0
 
@@ -93,6 +92,167 @@ Public Sub Set_item_of_array2D( _
     i = LBound(array2D, 1) + zero_based_row_index
     j = LBound(array2D, 2) + zero_based_column_index
     
+    If IsObject(new_value) Then
+        Set array2D(i, j) = new_value
+    Else
+        array2D(i, j) = new_value
+    End If
+End Sub
+
+
+
+Public Sub Set_item_of_array2D_of_byte( _
+    array2D() As Byte, _
+    zero_based_row_index As Long, _
+    zero_based_column_index As Long, _
+    new_value As Byte)
+    
+    Dim i As Long
+    Dim j As Long
+    i = LBound(array2D, 1) + zero_based_row_index
+    j = LBound(array2D, 2) + zero_based_column_index
+    
+    array2D(i, j) = new_value
+End Sub
+
+
+
+Public Sub Set_item_of_array2D_of_int16( _
+    array2D() As Integer, _
+    zero_based_row_index As Long, _
+    zero_based_column_index As Long, _
+    new_value As Integer)
+    
+    Dim i As Long
+    Dim j As Long
+    i = LBound(array2D, 1) + zero_based_row_index
+    j = LBound(array2D, 2) + zero_based_column_index
+    
+    array2D(i, j) = new_value
+End Sub
+
+
+Public Sub Set_item_of_array2D_of_int32( _
+    array2D() As Long, _
+    zero_based_row_index As Long, _
+    zero_based_column_index As Long, _
+    new_value As Long)
+    
+    Dim i As Long
+    Dim j As Long
+    i = LBound(array2D, 1) + zero_based_row_index
+    j = LBound(array2D, 2) + zero_based_column_index
+    
+    array2D(i, j) = new_value
+End Sub
+
+
+
+Public Sub Set_item_of_array2D_of_int64( _
+    array2D() As LongLong, _
+    zero_based_row_index As Long, _
+    zero_based_column_index As Long, _
+    new_value As LongLong)
+    
+    Dim i As Long
+    Dim j As Long
+    i = LBound(array2D, 1) + zero_based_row_index
+    j = LBound(array2D, 2) + zero_based_column_index
+    
+    array2D(i, j) = new_value
+End Sub
+
+
+Public Sub Set_item_of_array2D_of_float32( _
+    array2D() As Single, _
+    zero_based_row_index As Long, _
+    zero_based_column_index As Long, _
+    new_value As Single)
+    
+    Dim i As Long
+    Dim j As Long
+    i = LBound(array2D, 1) + zero_based_row_index
+    j = LBound(array2D, 2) + zero_based_column_index
+    
+    array2D(i, j) = new_value
+End Sub
+
+
+
+Public Sub Set_item_of_array2D_of_float64( _
+    array2D() As Double, _
+    zero_based_row_index As Long, _
+    zero_based_column_index As Long, _
+    new_value As Double)
+    
+    Dim i As Long
+    Dim j As Long
+    i = LBound(array2D, 1) + zero_based_row_index
+    j = LBound(array2D, 2) + zero_based_column_index
+    
+    array2D(i, j) = new_value
+End Sub
+
+
+
+Public Sub Set_item_of_array2D_of_string( _
+    array2D() As String, _
+    zero_based_row_index As Long, _
+    zero_based_column_index As Long, _
+    new_value As String)
+    
+    Dim i As Long
+    Dim j As Long
+    i = LBound(array2D, 1) + zero_based_row_index
+    j = LBound(array2D, 2) + zero_based_column_index
+    
+    array2D(i, j) = new_value
+End Sub
+
+
+
+Public Sub Set_item_of_array2D_of_date( _
+    array2D() As Date, _
+    zero_based_row_index As Long, _
+    zero_based_column_index As Long, _
+    new_value As Date)
+    
+    Dim i As Long
+    Dim j As Long
+    i = LBound(array2D, 1) + zero_based_row_index
+    j = LBound(array2D, 2) + zero_based_column_index
+    
+    array2D(i, j) = new_value
+End Sub
+
+
+Public Sub Set_item_of_array2D_of_objects( _
+    array2D() As Object, _
+    zero_based_row_index As Long, _
+    zero_based_column_index As Long, _
+    new_value As Object)
+    
+    Dim i As Long
+    Dim j As Long
+    i = LBound(array2D, 1) + zero_based_row_index
+    j = LBound(array2D, 2) + zero_based_column_index
+    
+    Set array2D(i, j) = new_value
+End Sub
+
+
+
+Public Sub Set_item_of_array2D_of_bool( _
+    array2D() As Boolean, _
+    zero_based_row_index As Long, _
+    zero_based_column_index As Long, _
+    new_value As Boolean)
+    
+    Dim i As Long
+    Dim j As Long
+    i = LBound(array2D, 1) + zero_based_row_index
+    j = LBound(array2D, 2) + zero_based_column_index
+    
     array2D(i, j) = new_value
 End Sub
 
@@ -100,14 +260,14 @@ End Sub
 
 Public Function Repeat_as_array1D( _
     val As Variant, _
-    count As Long, _
+    Count As Long, _
     Optional first_index As Long = 0) As Variant
     
-    Debug.Assert count > 0
+    Debug.Assert Count > 0
     
-    Dim result As Variant: ReDim result(first_index To first_index + count - 1)
+    Dim result As Variant: ReDim result(first_index To first_index + Count - 1)
     Dim i As Long
-    For i = first_index To first_index + count - 1
+    For i = first_index To first_index + Count - 1
         result(i) = val
     Next i
     
@@ -211,6 +371,135 @@ Public Function Transform_array2D_to_array1D( _
     Next i
     
     Transform_array2D_to_array1D = result
+End Function
+
+
+
+
+Public Function Transform_array2D_of_int32_to_array1D( _
+    src_arr() As Long, _
+    Optional first_index As Long = 0) As Long()
+    
+    Debug.Assert IsArray(src_arr)
+    Debug.Assert ARRAY_HELPER.Get_array_rank(src_arr) = 2
+    
+    Dim src_r1 As Long: src_r1 = LBound(src_arr, 1)
+    Dim src_r2 As Long: src_r2 = UBound(src_arr, 1)
+    Dim src_c1 As Long: src_c1 = LBound(src_arr, 2)
+    Dim src_c2 As Long: src_c2 = UBound(src_arr, 2)
+    
+    Dim dst_size As Long: dst_size = (src_r2 - src_r1 + 1) * (src_c2 - src_c1 + 1)
+    Dim result() As Long: ReDim result(first_index To first_index + dst_size - 1)
+
+    Dim i As Long
+    Dim j As Long
+    Dim k As Long
+    
+    k = first_index
+    For i = src_r1 To src_r2
+        For j = src_c1 To src_c2
+            result(k) = src_arr(i, j)
+            k = k + 1
+        Next j
+    Next i
+    
+    Transform_array2D_of_int32_to_array1D = result
+End Function
+
+
+
+Public Function Transform_array2D_of_float64_to_array1D( _
+    src_arr() As Double, _
+    Optional first_index As Long = 0) As Double()
+    
+    Debug.Assert IsArray(src_arr)
+    Debug.Assert ARRAY_HELPER.Get_array_rank(src_arr) = 2
+    
+    Dim src_r1 As Long: src_r1 = LBound(src_arr, 1)
+    Dim src_r2 As Long: src_r2 = UBound(src_arr, 1)
+    Dim src_c1 As Long: src_c1 = LBound(src_arr, 2)
+    Dim src_c2 As Long: src_c2 = UBound(src_arr, 2)
+    
+    Dim dst_size As Long: dst_size = (src_r2 - src_r1 + 1) * (src_c2 - src_c1 + 1)
+    Dim result() As Double: ReDim result(first_index To first_index + dst_size - 1)
+
+    Dim i As Long
+    Dim j As Long
+    Dim k As Long
+    
+    k = first_index
+    For i = src_r1 To src_r2
+        For j = src_c1 To src_c2
+            result(k) = src_arr(i, j)
+            k = k + 1
+        Next j
+    Next i
+    
+    Transform_array2D_of_float64_to_array1D = result
+End Function
+
+
+
+Public Function Transform_array2D_of_string_to_array1D( _
+    src_arr() As String, _
+    Optional first_index As Long = 0) As String()
+    
+    Debug.Assert IsArray(src_arr)
+    Debug.Assert ARRAY_HELPER.Get_array_rank(src_arr) = 2
+    
+    Dim src_r1 As Long: src_r1 = LBound(src_arr, 1)
+    Dim src_r2 As Long: src_r2 = UBound(src_arr, 1)
+    Dim src_c1 As Long: src_c1 = LBound(src_arr, 2)
+    Dim src_c2 As Long: src_c2 = UBound(src_arr, 2)
+    
+    Dim dst_size As Long: dst_size = (src_r2 - src_r1 + 1) * (src_c2 - src_c1 + 1)
+    Dim result() As String: ReDim result(first_index To first_index + dst_size - 1)
+
+    Dim i As Long
+    Dim j As Long
+    Dim k As Long
+    
+    k = first_index
+    For i = src_r1 To src_r2
+        For j = src_c1 To src_c2
+            result(k) = src_arr(i, j)
+            k = k + 1
+        Next j
+    Next i
+    
+    Transform_array2D_of_string_to_array1D = result
+End Function
+
+
+
+Public Function Transform_array2D_of_bool_to_array1D( _
+    src_arr() As Boolean, _
+    Optional first_index As Long = 0) As Boolean()
+    
+    Debug.Assert IsArray(src_arr)
+    Debug.Assert ARRAY_HELPER.Get_array_rank(src_arr) = 2
+    
+    Dim src_r1 As Long: src_r1 = LBound(src_arr, 1)
+    Dim src_r2 As Long: src_r2 = UBound(src_arr, 1)
+    Dim src_c1 As Long: src_c1 = LBound(src_arr, 2)
+    Dim src_c2 As Long: src_c2 = UBound(src_arr, 2)
+    
+    Dim dst_size As Long: dst_size = (src_r2 - src_r1 + 1) * (src_c2 - src_c1 + 1)
+    Dim result() As Boolean: ReDim result(first_index To first_index + dst_size - 1)
+
+    Dim i As Long
+    Dim j As Long
+    Dim k As Long
+    
+    k = first_index
+    For i = src_r1 To src_r2
+        For j = src_c1 To src_c2
+            result(k) = src_arr(i, j)
+            k = k + 1
+        Next j
+    Next i
+    
+    Transform_array2D_of_bool_to_array1D = result
 End Function
 
 
@@ -552,10 +841,10 @@ Public Function Convert_from_collection_to_array1D( _
     coll As Collection, _
     Optional first_index As Long = 0)
     
-    Debug.Assert coll.count > 0
+    Debug.Assert coll.Count > 0
 
     Dim n1 As Long: n1 = first_index
-    Dim n2 As Long: n2 = first_index + coll.count - 1
+    Dim n2 As Long: n2 = first_index + coll.Count - 1
     Dim result As Variant: ReDim result(n1 To n2)
     
     Dim el As Variant
@@ -590,7 +879,7 @@ Public Function Distinct_array2D(src_arr As Variant) As Variant
         ans(k, 1) = src_arr(nr1, k)
     Next k
     
-    Dim count As Long: count = 1
+    Dim Count As Long: Count = 1
 
     Dim i As Long
     Dim j As Long
@@ -616,10 +905,10 @@ Public Function Distinct_array2D(src_arr As Variant) As Variant
         Next j
     
         If bFound = False Then
-            count = count + 1
-            ReDim Preserve ans(nc1 To nc2, 1 To count)
+            Count = Count + 1
+            ReDim Preserve ans(nc1 To nc2, 1 To Count)
             For k = nc1 To nc2
-                ans(k, count) = src_arr(i, k)
+                ans(k, Count) = src_arr(i, k)
             Next k
             
         End If
@@ -631,46 +920,78 @@ End Function
 
 
 
-'' [OOIEOE?] Iieo?eou iannea ?acee?a?ueony cia?aiee
-'' Aica?auaao iannea, niaa??auee ea?aue oieeaeuiue yeaiaio enoiaiiai ianneaa ii iaiiio ?aco
-'' V - aoiaiie iaiiia?iue iannea, a eioi?ii euai oieeaeuiua yeaiaiou
-'Function Distinct_array1D(v As Variant) As Variant
-'    Dim i As Long, j As Long, k As Long, N As Long, count As Long
-'    Dim MyArray() As Variant
-'    ReDim MyArray(1 To 1)
-'    Dim Niaiaaaiea As Boolean
-'
-'    If Not IsArray(v) Then
-'        MyArray(1) = v
-'        Get_DifVal = MyArray()
-'        Exit Function
-'    End If
-'
-'    N = UBound(v)
-'
-'    MyArray(1) = v(1)
-'
-'    count = 1
-'    For i = 2 To N
-'
-'        Niaiaaaiea = False
-'
-'        For j = 1 To UBound(MyArray())
-'            If v(i) = MyArray(j) Then
-'                Niaiaaaiea = True
-'                Exit For
-'            End If
-'        Next j
-'
-'        If Niaiaaaiea = False Then
-'            count = count + 1
-'            ReDim Preserve MyArray(1 To count)
-'            MyArray(count) = v(i)
-'        End If
-'
-'    Next i
-'
-'    Distinct_array1D = MyArray()
-'End Function
+
+Public Function Is_arrays_equals(arr1 As Variant, arr2 As Variant) As Boolean
+    Dim rank1 As Long: rank1 = ARRAY_HELPER.Get_array_rank(arr1)
+    Dim rank2 As Long: rank2 = ARRAY_HELPER.Get_array_rank(arr2)
+    
+    If Not rank1 = rank2 Then
+        Is_arrays_equals = False
+        Exit Function
+    End If
+    
+    
+    
+    Debug.Assert rank1 > 0
+    Debug.Assert rank1 < 3
+    
+    Dim i1 As Long, j1 As Long, k1 As Long
+    Dim i2 As Long, j2 As Long, k2 As Long
+    Dim n1 As Long, n2 As Long
+    Dim m1 As Long, m2 As Long
+    
+    If rank1 = 1 Then
+        n1 = ARRAY_HELPER.Get_array_size(arr1)
+        n2 = ARRAY_HELPER.Get_array_size(arr2)
+    
+        If Not n1 = n2 Then
+            Is_arrays_equals = False
+            Exit Function
+        End If
+    
+        For i1 = LBound(arr1) To UBound(arr2)
+            i2 = i1 - LBound(arr1) + LBound(arr2)
+        
+            If Not arr1(i1) = arr2(i2) Then
+                Is_arrays_equals = False
+                Exit Function
+            End If
+        Next i1
+    
+    ElseIf rank1 = 2 Then
+        n1 = ARRAY_HELPER.Get_array_size(arr1, 1)
+        n2 = ARRAY_HELPER.Get_array_size(arr2, 1)
+        m1 = ARRAY_HELPER.Get_array_size(arr1, 2)
+        m2 = ARRAY_HELPER.Get_array_size(arr2, 2)
+    
+        If Not n1 = n2 Then
+            Is_arrays_equals = False
+            Exit Function
+        End If
+        
+        If Not m1 = m2 Then
+            Is_arrays_equals = False
+            Exit Function
+        End If
+    
+        For i1 = LBound(arr1, 1) To UBound(arr2, 1)
+            i2 = i1 - LBound(arr1, 1) + LBound(arr2, 1)
+        
+            For j1 = LBound(arr1, 2) To UBound(arr2, 2)
+                j2 = j1 - LBound(arr1, 2) + LBound(arr2, 2)
+
+                If Not arr1(i1, j1) = arr2(i2, j1) Then
+                    Is_arrays_equals = False
+                    Exit Function
+                End If
+            Next j1
+        Next i1
+    
+    End If
+    
+    
+    Is_arrays_equals = True
+    
+End Function
 
 

@@ -34,8 +34,8 @@ Public Function Get_range_box_from_excel_range(rng As Excel.Range) As RANGE_BOX.
     With result
         result.row_onedex = rng.Row
         result.column_onedex = rng.Column
-        result.count_rows = rng.Rows.count
-        result.count_columns = rng.Columns.count
+        result.count_rows = rng.Rows.Count
+        result.count_columns = rng.Columns.Count
     End With
     
     Get_range_box_from_excel_range = result

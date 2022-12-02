@@ -31,12 +31,12 @@ Public Property Let Case_sensitivity(val As Boolean)
 End Property
 
 
-Public Function Add(name As String) As Long
-    If dict_name_to_id.Contains_key(name) Then
-        Add = dict_name_to_id.Get_value(name)
+Public Function Add(Name As String) As Long
+    If dict_name_to_id.Contains_key(Name) Then
+        Add = dict_name_to_id.Get_value(Name)
     Else
-        dict_name_to_id.Add_or_replace name, id_counter
-        dict_id_to_name.Add_or_replace id_counter, name
+        dict_name_to_id.Add_or_replace Name, id_counter
+        dict_id_to_name.Add_or_replace id_counter, Name
         Add = id_counter
         id_counter = id_counter + 1
     End If
@@ -47,8 +47,8 @@ Public Function Get_name(id As Long) As String
     Get_name = dict_id_to_name.Get_value(id)
 End Function
 
-Public Function Get_id(name As String) As Long
-    Get_id = dict_name_to_id.Get_value(name)
+Public Function Get_id(Name As String) As Long
+    Get_id = dict_name_to_id.Get_value(Name)
 End Function
 
 
@@ -65,7 +65,7 @@ Public Function Contains_id(id As Long) As Boolean
     Contains_id = dict_id_to_name.Contains_key(id)
 End Function
 
-Public Function Contains_name(name As String) As Boolean
-    Contains_name = dict_name_to_id.Contains_key(name)
+Public Function Contains_name(Name As String) As Boolean
+    Contains_name = dict_name_to_id.Contains_key(Name)
 End Function
 
