@@ -128,7 +128,7 @@ Public Function Add_key_and_get_record_index(key As Long) As Long
     optional_record_index = Try_get_record_index(key)
     
     If optional_record_index.Has_value Then
-        Add_key_and_get_record_index = optional_record_index.Value
+        Add_key_and_get_record_index = optional_record_index.value
         Exit Function
     End If
     
@@ -227,7 +227,7 @@ Public Function Try_get_record_index(key As Long) As Optional_int32
         If (hash_code = key_hash_code) And Check_key_equality(key, keys(onedex - 1)) Then
             
             Try_get_record_index.Has_value = True
-            Try_get_record_index.Value = onedex - 1
+            Try_get_record_index.value = onedex - 1
             
             Exit Function
         Else
@@ -237,7 +237,7 @@ Public Function Try_get_record_index(key As Long) As Optional_int32
     
     
     Try_get_record_index.Has_value = False
-    Try_get_record_index.Value = -1
+    Try_get_record_index.value = -1
     
 End Function
 

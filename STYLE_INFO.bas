@@ -52,7 +52,7 @@ Sub Create_worksheet_with_style_information()
     j = j + 1: aStData(1, j) = "NumberFormat"
     j = j + 1: aStData(1, j) = "NumberFormatLocal"
     
-    Dim st As Style
+    Dim st As style
     Dim i As Long: i = 1
     For Each st In ThisWorkbook.Styles
         i = i + 1
@@ -68,7 +68,7 @@ Sub Create_worksheet_with_style_information()
         j = j + 1: aStData(i, j) = IIf(st.Font.Bold, 1, 0) 'FontBold
         j = j + 1: aStData(i, j) = IIf(st.Font.Italic, 1, 0) 'FontItalic
         j = j + 1: aStData(i, j) = IIf(st.Font.Underline, 1, 0) 'FontUnderline
-        j = j + 1: aStData(i, j) = st.Font.Color 'FontColorRGB
+        j = j + 1: aStData(i, j) = st.Font.color 'FontColorRGB
         j = j + 1: aStData(i, j) = st.NumberFormat 'NumberFormat
         j = j + 1: aStData(i, j) = st.NumberFormatLocal 'NumberFormatLocal
         
@@ -76,7 +76,7 @@ Sub Create_worksheet_with_style_information()
     
     Dim Nc_sl As Long: Nc_sl = j
     
-    [a2].Value = "List of styles"
+    [a2].value = "List of styles"
     Dim dst_rng_address As String
     dst_rng_address = Get_range_address(3, 1, Nst + 1, Nc_sl)
     
@@ -123,7 +123,7 @@ Sub Create_worksheet_with_style_information()
     Dim dst_rng As Range
     Set dst_rng = ws.Range(dst_rng_address)
     
-    dst_rng.Offset(-1, 0).Value = "Style replacement instructions"
+    dst_rng.Offset(-1, 0).value = "Style replacement instructions"
 
     Set lo = Create_empty_list_object(dst_rng, loname_style_replacement, 10, _
         "WorksheetName", "OldStyleName", "NewStyleName")
@@ -135,7 +135,7 @@ Sub Create_worksheet_with_style_information()
     dst_rng_address = Get_range_address(3, dst_rng.Column + lo.ListColumns.Count + 2)
     Set dst_rng = ws.Range(dst_rng_address)
     
-    dst_rng.Offset(-1, 0).Value = "Style deleting instructions"
+    dst_rng.Offset(-1, 0).value = "Style deleting instructions"
 
     Set lo = Create_empty_list_object(dst_rng, loname_style_deleting, 10, "StyleName")
     
@@ -152,7 +152,7 @@ Public Sub Delete_styles_from_list_object_instructions()
     
     Dim content As Variant: content = lo.DataBodyRange.Value2
     Dim s As String
-    Dim st As Style
+    Dim st As style
     
     If IsArray(content) Then
         Dim i As Long
@@ -282,9 +282,9 @@ Public Sub Replace_styles_from_list_object_instructions()
     Dim r As ListRow
     Dim i As Long: i = 1
     For Each r In lo.ListRows
-        worksheet_names(i) = r.Range(1, 1).Value
-        style_old_names(i) = r.Range(1, 2).Value
-        style_new_names(i) = r.Range(1, 3).Value
+        worksheet_names(i) = r.Range(1, 1).value
+        style_old_names(i) = r.Range(1, 2).value
+        style_new_names(i) = r.Range(1, 3).value
         i = i + 1
     Next r
 
@@ -369,8 +369,8 @@ Private Sub Replace_styles( _
     Optional too_much_cells_value As Long = 10000000)
 
     Dim n As Long: n = UBound(pairs) - LBound(pairs) + 1
-    Dim old_styles() As Style: ReDim old_styles(1 To n)
-    Dim new_styles() As Style: ReDim new_styles(1 To n)
+    Dim old_styles() As style: ReDim old_styles(1 To n)
+    Dim new_styles() As style: ReDim new_styles(1 To n)
     Dim filters() As Boolean: ReDim filters(1 To n)
     
     Dim ws As Worksheet: Set ws = subj.Worksheet
@@ -382,8 +382,8 @@ Private Sub Replace_styles( _
         Dim pair As Style_replacement_pair: pair = pairs(i - 1 + LBound(pairs))
     
         On Error Resume Next
-            Dim old_style As Style: Set old_style = all_styles.Item(pair.Old_value)
-            Dim new_style As Style: Set new_style = all_styles(pair.new_value)
+            Dim old_style As style: Set old_style = all_styles.Item(pair.Old_value)
+            Dim new_style As style: Set new_style = all_styles(pair.new_value)
             
             If Not Err.number = 0 Then
                 filters(i) = False
@@ -404,7 +404,7 @@ Private Sub Replace_styles( _
     Dim cell As Range
     For Each cell In subj
         For i = 1 To n
-            If cell.Style = old_styles(i) Then cell.Style = new_styles(i)
+            If cell.style = old_styles(i) Then cell.style = new_styles(i)
         Next i
     Next cell
 

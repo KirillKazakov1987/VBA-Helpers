@@ -20,7 +20,7 @@ Public Sub Write_2D_array_to_excel_range(arr As Variant, dst_rng As Range)
     
     Dim r As Range: Set r = Range(cell_TL, cell_BR)
 
-    r.Value = arr
+    r.value = arr
 End Sub
 
 

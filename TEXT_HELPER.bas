@@ -121,3 +121,176 @@ Private Function Pad( _
 End Function
 
 
+
+
+Public Function Count_substrings(search_space As String, substr As String) As Long
+    Dim sublen As Long, splen As Long
+    sublen = Len(substr)
+    splen = Len(search_space)
+    
+    If sublen = 0 Or splen = 0 Then
+        Count_substrings = 0
+        Exit Function
+    End If
+
+    
+    
+    Dim fragment As String
+    
+    Dim i As Long
+    i = 1
+    
+    Dim counter As Long
+    counter = 0
+    
+    Do While i + sublen <= splen + 1
+        fragment = Mid(search_space, i, sublen)
+        If fragment = substr Then
+            counter = counter + 1
+            i = i + sublen
+        Else
+            i = i + 1
+        End If
+        
+    Loop
+    
+    Count_substrings = counter
+
+End Function
+
+
+
+
+Public Function Onedex_of(search_space As String, substr As String) As Optional_int32
+    Dim sublen As Long, splen As Long
+    sublen = Len(substr)
+    splen = Len(search_space)
+    
+    If sublen = 0 Or splen = 0 Then
+        Onedex_of.Has_value = False
+        Exit Function
+    End If
+
+    
+    
+    Dim fragment As String
+    
+    Dim i As Long
+    i = 1
+    
+    Dim counter As Long
+    counter = 0
+    
+    Do While i + sublen <= splen + 1
+        fragment = Mid(search_space, i, sublen)
+        If fragment = substr Then
+            Onedex_of.Has_value = True
+            Onedex_of.value = i
+            Exit Function
+        Else
+            i = i + 1
+        End If
+    Loop
+    
+    Onedex_of.Has_value = False
+End Function
+
+
+
+Public Function LTrim_custom(subj As String, trim_fragment As String) As String
+    Dim ns As Long: ns = Len(subj)
+    Dim nt As Long: nt = Len(trim_fragment)
+    
+    If ns = 0 Then GoTo NOT_CHANGED
+    If nt = 0 Then GoTo NOT_CHANGED
+    
+    Dim i As Long: i = 1
+    
+    Dim s As String
+    Do While i + nt < ns + 1
+        s = Mid(subj, i, nt)
+        
+        If s = trim_fragment Then
+            i = i + nt
+        Else
+            LTrim_custom = Mid(subj, i)
+            Exit Function
+        End If
+    Loop
+    
+    LTrim_custom = Mid(subj, i)
+    Exit Function
+    
+NOT_CHANGED:
+    LTrim_custom = subj
+     
+End Function
+
+
+
+Public Function RTrim_custom(subj As String, trim_fragment As String) As String
+    subj = StrReverse(subj)
+    trim_fragment = StrReverse(trim_fragment)
+    RTrim_custom = LTrim_custom(subj, trim_fragment)
+    RTrim_custom = StrReverse(RTrim_custom)
+End Function
+
+
+Public Function Trim_custom(subj As String, trim_fragment As String) As String
+    subj = LTrim_custom(subj, trim_fragment)
+    subj = RTrim_custom(subj, trim_fragment)
+    Trim_custom = subj
+End Function
+
+Public Function Trim_custom2(subj As String, trim_fragment1 As String, trim_fragment2 As String) As String
+    subj = Trim_custom(subj, trim_fragment1)
+    subj = Trim_custom(subj, trim_fragment2)
+    Trim_custom2 = subj
+End Function
+
+Public Function Trim_custom3(subj As String, trim_fragment1 As String, trim_fragment2 As String, trim_fragment3 As String) As String
+    subj = Trim_custom(subj, trim_fragment1)
+    subj = Trim_custom(subj, trim_fragment2)
+    subj = Trim_custom(subj, trim_fragment3)
+    Trim_custom3 = subj
+End Function
+
+Public Function Trim_custom4(subj As String, trim_fragment1 As String, trim_fragment2 As String, trim_fragment3 As String, trim_fragment4 As String) As String
+    subj = Trim_custom(subj, trim_fragment1)
+    subj = Trim_custom(subj, trim_fragment2)
+    subj = Trim_custom(subj, trim_fragment3)
+    subj = Trim_custom(subj, trim_fragment4)
+    Trim_custom4 = subj
+End Function
+
+
+
+Public Function Starts_with(subj As String, expected_in_start As String) As Boolean
+    Dim ns As Long
+    Dim ne As Long
+    
+    ns = Len(subj)
+    ne = Len(expected_in_start)
+    
+    
+    If ne > ns Then GoTo NOT_STARTS
+    
+    If ns = 0 Then
+        Starts_with = True
+        Exit Function
+    End If
+    
+    
+    Dim s As String
+    s = Mid(subj, 1, ne)
+    
+    Starts_with = (s = expected_in_start)
+    Exit Function
+    
+NOT_STARTS:
+    expected_in_start = False
+
+End Function
+
+
+

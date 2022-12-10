@@ -114,7 +114,7 @@ End Property
 
 
 Public Property Get Is_cell_empty(column_name As String, row_ondex As Long) As Boolean
-    Is_cell_empty = IsEmpty(lo.ListColumns(column_name).Range(row_ondex + 1, 1).Value)
+    Is_cell_empty = IsEmpty(lo.ListColumns(column_name).Range(row_ondex + 1, 1).value)
 End Property
 
 
@@ -130,7 +130,7 @@ Public Function Get_column_as_array1D(column_name As String) As Variant
     Set locol = lo.ListColumns.Item(column_name)
     
     Dim result As Variant
-    result = EXCEL_RANGE_TO_ARRAY.Read_array1D_from_range(lo.DataBodyRange)
+    result = EXCEL_RANGE_TO_ARRAY.Read_array1D_from_range(locol.Range)
     
     Get_column_as_array1D = result
 End Function
@@ -151,7 +151,7 @@ Public Function Get_interior_colors_of_column_cells_as_array1D_of_int32( _
     
     Dim result() As Long
     result = EXCEL_RANGE_TO_ARRAY.Get_interior_colors_of_range_cells_as_array1D_of_int32( _
-        lo.DataBodyRange, _
+        locol.Range, _
         True, _
         first_index)
 
@@ -176,7 +176,7 @@ Public Function Get_column_as_array1D_of_int32( _
     
     Dim result() As Long
     result = EXCEL_RANGE_TO_ARRAY.Read_array1D_of_int32_from_range( _
-        lo.DataBodyRange, _
+        locol.Range, _
         True, _
         first_index, _
         substitute_for_empty, substitute_for_uncovertable, _
@@ -202,7 +202,7 @@ Public Function Get_column_as_array1D_of_float64( _
     
     Dim result() As Double
     result = EXCEL_RANGE_TO_ARRAY.Read_array1D_of_float64_from_range( _
-        lo.DataBodyRange, _
+        locol.Range, _
         True, _
         first_index, _
         substitute_for_empty, substitute_for_uncovertable, _
@@ -229,7 +229,7 @@ Public Function Get_column_as_array1D_of_bool( _
     
     Dim result() As Boolean
     result = EXCEL_RANGE_TO_ARRAY.Read_array1D_of_bool_from_range( _
-        lo.DataBodyRange, _
+        locol.Range, _
         True, _
         first_index, _
         substitute_for_empty, substitute_for_uncovertable, _
@@ -254,7 +254,7 @@ Public Function Get_column_as_array1D_of_string( _
     
     Dim result() As String
     result = EXCEL_RANGE_TO_ARRAY.Read_array1D_of_string_from_range( _
-        lo.DataBodyRange, _
+        locol.Range, _
         True, _
         first_index, _
         substitute_for_empty, _

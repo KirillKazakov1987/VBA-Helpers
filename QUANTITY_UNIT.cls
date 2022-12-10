@@ -61,22 +61,24 @@ End Sub
 
 Public Sub Init_linearly_based_on_two_points( _
     unit_name As String, _
-    Optional v_this_1 As Double, _
-    Optional v_SI_1 As Double, _
-    Optional v_this_2 As Double, _
-    Optional v_SI_2 As Double)
+    v_this_1 As Double, _
+    v_SI_1 As Double, _
+    v_this_2 As Double, _
+    v_SI_2 As Double)
     
     Debug.Assert Abs(v_this_1 - v_this_2) > 0
     Debug.Assert Abs(v_SI_1 - v_SI_2) > 0
 
     m_converting_method = CONVERTING_BY_LINEAR_DEPENDENCY
 
+    ' ===============================
     ' SIU = a * TU + b
     ' SIU1 = a * TU1 + b
     ' SIU2 = a * TU2 + b
     ' (SIU2 - SIU1) = a * (TU2 - TU1)
     ' a = (SIU2 - SIU1) / (TU2 - TU1)
     ' b = SIU1 - a * TU1
+    ' ===============================
     Dim SIU1 As Double, SIU2 As Double, TU1 As Double, TU2 As Double
     Dim a As Double, b As Double
     
@@ -88,7 +90,9 @@ Public Sub Init_linearly_based_on_two_points( _
     b = SIU1 - a * TU1
     
     
+    ' ================
     ' TU = c * SIU + d
+    ' ================
     Dim c As Double, d As Double
     
     c = 1 / a

@@ -73,10 +73,10 @@ Public Function Try_get_value(key As String) As Optional_variant
     
     If optional_record_index.Has_value Then
         Try_get_value.Has_value = True
-        If IsObject(values(optional_record_index.Value)) Then
-            Set Try_get_value.Value = values(optional_record_index.Value)
+        If IsObject(values(optional_record_index.value)) Then
+            Set Try_get_value.value = values(optional_record_index.value)
         Else
-             Try_get_value.Value = values(optional_record_index.Value)
+             Try_get_value.value = values(optional_record_index.value)
         End If
     Else
         Try_get_value.Has_value = False
@@ -90,10 +90,10 @@ Public Function Get_value(key As String) As Variant
     OPTIONAL_VALUE = Me.Try_get_value(key)
     
     If OPTIONAL_VALUE.Has_value Then
-        If IsObject(OPTIONAL_VALUE.Value) Then
-            Set Get_value = OPTIONAL_VALUE.Value
+        If IsObject(OPTIONAL_VALUE.value) Then
+            Set Get_value = OPTIONAL_VALUE.value
         Else
-            Get_value = OPTIONAL_VALUE.Value
+            Get_value = OPTIONAL_VALUE.value
         End If
     Else
         Err.Raise 999999

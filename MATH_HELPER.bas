@@ -45,13 +45,24 @@ Public Function Min_i32(x As Long, y As Long) As Long
 End Function
 
 
-Public Function Clamp_i32(x As Long, min As Long, max As Long) As Long
-    If x < min Then
-        Clamp_i32 = min
-    ElseIf x > max Then
-        Clamp_i32 = max
+Public Function Clamp_i32(x As Long, Min As Long, Max As Long) As Long
+    If x < Min Then
+        Clamp_i32 = Min
+    ElseIf x > Max Then
+        Clamp_i32 = Max
     Else
         Clamp_i32 = x
+    End If
+End Function
+
+
+Public Function Clamp_f64(x As Double, Min As Double, Max As Double) As Double
+    If x < Min Then
+        Clamp_f64 = Min
+    ElseIf x > Max Then
+        Clamp_f64 = Max
+    Else
+        Clamp_f64 = x
     End If
 End Function
 

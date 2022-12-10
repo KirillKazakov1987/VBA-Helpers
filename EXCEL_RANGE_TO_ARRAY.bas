@@ -153,10 +153,10 @@ Public Function Read_array2D_from_range( _
         Read_array2D_from_range = Empty
     ElseIf nr * nc = 1 Then
         ReDim arr(first_index To first_index, first_index To first_index)
-        arr(first_index, first_index) = rng.Value
+        arr(first_index, first_index) = rng.value
         Read_array2D_from_range = arr
     Else
-        Dim raw_arr As Variant: raw_arr = rng.Value
+        Dim raw_arr As Variant: raw_arr = rng.value
         
         ReDim arr(first_index To first_index + nr - 1, first_index To first_index + nc - 1)
     
@@ -204,14 +204,14 @@ Public Function Read_array2D_of_int32_from_range( _
     ElseIf nr * nc = 1 Then
         ReDim arr(first_index To first_index, first_index To first_index)
         
-        If IsEmpty(rng.Value) Then
+        If IsEmpty(rng.value) Then
             counted_empty_values = counted_empty_values + 1
             arr(first_index, first_index) = substitute_for_empty
         Else
-            opi32 = TYPE_HELPER.Try_convert_to_int32(rng.Value)
+            opi32 = TYPE_HELPER.Try_convert_to_int32(rng.value)
             
             If opi32.Has_value Then
-                arr(first_index, first_index) = opi32.Value
+                arr(first_index, first_index) = opi32.value
             Else
                 counted_unconvertable_values = counted_unconvertable_values + 1
                 arr(first_index, first_index) = substitute_for_uncovertable
@@ -220,7 +220,7 @@ Public Function Read_array2D_of_int32_from_range( _
         
         Read_array2D_of_int32_from_range = arr
     Else
-        Dim raw_arr As Variant: raw_arr = rng.Value
+        Dim raw_arr As Variant: raw_arr = rng.value
         
         ReDim arr(first_index To first_index + nr - 1, first_index To first_index + nc - 1)
     
@@ -237,7 +237,7 @@ Public Function Read_array2D_of_int32_from_range( _
                     opi32 = TYPE_HELPER.Try_convert_to_int32(v)
                     
                     If opi32.Has_value Then
-                        ARRAY_HELPER.Set_item_of_array2D_of_int32 arr, i, j, opi32.Value
+                        ARRAY_HELPER.Set_item_of_array2D_of_int32 arr, i, j, opi32.value
                     Else
                         counted_unconvertable_values = counted_unconvertable_values + 1
                         ARRAY_HELPER.Set_item_of_array2D_of_int32 arr, i, j, substitute_for_uncovertable
@@ -282,14 +282,14 @@ Public Function Read_array2D_of_float64_from_range( _
     ElseIf nr * nc = 1 Then
         ReDim arr(first_index To first_index, first_index To first_index)
         
-        If IsEmpty(rng.Value) Then
+        If IsEmpty(rng.value) Then
             counted_empty_values = counted_empty_values + 1
             arr(first_index, first_index) = substitute_for_empty
         Else
-            opf64 = TYPE_HELPER.Try_convert_to_float64(rng.Value)
+            opf64 = TYPE_HELPER.Try_convert_to_float64(rng.value)
             
             If opf64.Has_value Then
-                arr(first_index, first_index) = opf64.Value
+                arr(first_index, first_index) = opf64.value
             Else
                 counted_unconvertable_values = counted_unconvertable_values + 1
                 arr(first_index, first_index) = substitute_for_uncovertable
@@ -298,7 +298,7 @@ Public Function Read_array2D_of_float64_from_range( _
         
         Read_array2D_of_float64_from_range = arr
     Else
-        Dim raw_arr As Variant: raw_arr = rng.Value
+        Dim raw_arr As Variant: raw_arr = rng.value
         
         ReDim arr(first_index To first_index + nr - 1, first_index To first_index + nc - 1)
     
@@ -315,7 +315,7 @@ Public Function Read_array2D_of_float64_from_range( _
                     opf64 = TYPE_HELPER.Try_convert_to_float64(v)
                     
                     If opf64.Has_value Then
-                        ARRAY_HELPER.Set_item_of_array2D_of_float64 arr, i, j, opf64.Value
+                        ARRAY_HELPER.Set_item_of_array2D_of_float64 arr, i, j, opf64.value
                     Else
                         counted_unconvertable_values = counted_unconvertable_values + 1
                         ARRAY_HELPER.Set_item_of_array2D_of_float64 arr, i, j, substitute_for_uncovertable
@@ -356,16 +356,16 @@ Public Function Read_array2D_of_string_from_range( _
     ElseIf nr * nc = 1 Then
         ReDim arr(first_index To first_index, first_index To first_index)
         
-        If IsEmpty(rng.Value) Then
+        If IsEmpty(rng.value) Then
             counted_empty_values = counted_empty_values + 1
             arr(first_index, first_index) = substitute_for_empty
         Else
-            arr(first_index, first_index) = CStr(rng.Value)
+            arr(first_index, first_index) = CStr(rng.value)
         End If
         
         Read_array2D_of_string_from_range = arr
     Else
-        Dim raw_arr As Variant: raw_arr = rng.Value
+        Dim raw_arr As Variant: raw_arr = rng.value
         
         ReDim arr(first_index To first_index + nr - 1, first_index To first_index + nc - 1)
     
@@ -421,14 +421,14 @@ Public Function Read_array2D_of_bool_from_range( _
     ElseIf nr * nc = 1 Then
         ReDim arr(first_index To first_index, first_index To first_index)
         
-        If IsEmpty(rng.Value) Then
+        If IsEmpty(rng.value) Then
             counted_empty_values = counted_empty_values + 1
             arr(first_index, first_index) = substitute_for_empty
         Else
-            opb = TYPE_HELPER.Try_convert_to_bool(rng.Value)
+            opb = TYPE_HELPER.Try_convert_to_bool(rng.value)
             
             If opb.Has_value Then
-                arr(first_index, first_index) = opb.Value
+                arr(first_index, first_index) = opb.value
             Else
                 counted_unconvertable_values = counted_unconvertable_values + 1
                 arr(first_index, first_index) = substitute_for_uncovertable
@@ -437,7 +437,7 @@ Public Function Read_array2D_of_bool_from_range( _
         
         Read_array2D_of_bool_from_range = arr
     Else
-        Dim raw_arr As Variant: raw_arr = rng.Value
+        Dim raw_arr As Variant: raw_arr = rng.value
         
         ReDim arr(first_index To first_index + nr - 1, first_index To first_index + nc - 1)
     
@@ -454,7 +454,7 @@ Public Function Read_array2D_of_bool_from_range( _
                     opb = TYPE_HELPER.Try_convert_to_bool(v)
                     
                     If opb.Has_value Then
-                        ARRAY_HELPER.Set_item_of_array2D_of_bool arr, i, j, opb.Value
+                        ARRAY_HELPER.Set_item_of_array2D_of_bool arr, i, j, opb.value
                     Else
                         counted_unconvertable_values = counted_unconvertable_values + 1
                         ARRAY_HELPER.Set_item_of_array2D_of_bool arr, i, j, substitute_for_uncovertable
@@ -489,7 +489,7 @@ Public Function Get_interior_colors_of_range_cells_as_array2D_of_int32( _
         Get_interior_colors_of_range_cells_as_array2D_of_int32 = Empty
     ElseIf nr * nc = 1 Then
         ReDim arr(first_index To first_index, first_index To first_index)
-        arr(first_index, first_index) = rng.Interior.Color
+        arr(first_index, first_index) = rng.Interior.color
         Get_interior_colors_of_range_cells_as_array2D_of_int32 = arr
     Else
         
@@ -500,7 +500,7 @@ Public Function Get_interior_colors_of_range_cells_as_array2D_of_int32( _
         For i = 0 To nr - 1
             For j = 0 To nc - 1
                 Dim cell_color As Long
-                cell_color = rng((i - first_index + 1), (j - first_index + 1)).Interior.Color
+                cell_color = rng((i - first_index + 1), (j - first_index + 1)).Interior.color
                 arr(first_index + i, first_index + j) = cell_color
             Next j
         Next i
